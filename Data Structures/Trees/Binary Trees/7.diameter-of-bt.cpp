@@ -11,17 +11,16 @@
  */
 class Solution {
 public:
-    void helper(TreeNode* root, vector<int> &preorder) {
-        if(!root) return;
-        preorder.push_back(root->val);
-        helper(root->left, preorder);
-        helper(root->right, preorder);
-        return;
+    int diameterOfBinaryTree(TreeNode* root) {
+        int diameter = 0;
+        int height = Height(root, diameter);
+        return diameter;
     }
-    vector<int> preorderTraversal(TreeNode* root) {
-        vector<int> preorder;
-        if(!root) return preorder;
-        helper(root, preorder);
-        return preorder;
+    int Height(TreeNode* root, int &diameter) {
+        if(!root) return 0;
+        int lh = Height(root->left, diameter);
+        int rh = Height(root->right, diameter);
+        diameter = max(diameter, lh+rh);
+        return 1+max(lh,rh);
     }
 };
